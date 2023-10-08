@@ -53,6 +53,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+	if position.y  > 100 :
+		lost.emit()
+	
 	
 func get_life_point():
 	return life_point

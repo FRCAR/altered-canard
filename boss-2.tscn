@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bogdmnpg1fi7x"]
+
+[ext_resource type="Script" path="res://boss-2.gd" id="1_378bg"]
+[ext_resource type="Texture2D" uid="uid://dmovw00n5c1rg" path="res://img/boss-2.png" id="2_qcf7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wq0wn"]
+size = Vector2(349, 101.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5i20"]
+size = Vector2(266.5, 61)
+
+[node name="Boss2" type="CharacterBody2D"]
+position = Vector2(11, 84)
+collision_layer = 3
+script = ExtResource("1_378bg")
+metadata/SpriteType = "Enemy"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-13, -165)
+scale = Vector2(0.663341, 0.720554)
+texture = ExtResource("2_qcf7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, -138.25)
+shape = SubResource("RectangleShape2D_wq0wn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(35.75, -220.5)
+shape = SubResource("RectangleShape2D_r5i20")

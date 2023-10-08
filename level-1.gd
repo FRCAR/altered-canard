@@ -33,16 +33,13 @@ func _on_enemy_generation_timer_timeout():
 	enemy.killed.connect(_on_enemy_killed)
 	add_child(enemy)
 
-	
-
 func _on_player_transformed():
 	$FlameTransform.position = $Player/Camera2D.get_screen_center_position()
 	$FlameTransform.start()
 	#get_tree().paused = true
 	#await get_tree().create_timer(1.0).timeout
 	#get_tree().paused = false
-
-
+	
 func _on_player_lost():
 	$HUD.display_game_over()
 	await get_tree().create_timer(3.0).timeout

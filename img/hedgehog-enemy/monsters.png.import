@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbtm1pa230j4w"
-path="res://.godot/imported/platform-base.png-822ea62b4d01cfec191b29cd78e04a4e.ctex"
+uid="uid://2gn2e2l077tp"
+path="res://.godot/imported/monsters.png-951c3788a909c80c9bebb18d185b1478.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/platform-base.png"
-dest_files=["res://.godot/imported/platform-base.png-822ea62b4d01cfec191b29cd78e04a4e.ctex"]
+source_file="res://img/hedgehog-enemy/monsters.png"
+dest_files=["res://.godot/imported/monsters.png-951c3788a909c80c9bebb18d185b1478.ctex"]
 
 [params]
 

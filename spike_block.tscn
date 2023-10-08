@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0f1jertr7xg6"]
+
+[ext_resource type="Texture2D" uid="uid://dlnq0f4sp5p1e" path="res://img/spike-block.png" id="1_v43wk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il8gr"]
+size = Vector2(32, 15.5)
+
+[node name="SpikeBlock" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 2
+mass = 1000.0
+gravity_scale = 0.0
+freeze = true
+metadata/SpriteType = "Spike"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-15, -16)
+texture = ExtResource("1_v43wk")
+centered = false
+metadata/SpriteType = "Spike"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -8)
+shape = SubResource("RectangleShape2D_il8gr")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://diewnpqv5vn7f"]
+
+[ext_resource type="Texture2D" uid="uid://cdnkoorbk8olr" path="res://img/saw.png" id="1_8iixd"]
+[ext_resource type="Script" path="res://saw.gd" id="1_e5ssh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_syfys"]
+radius = 18.0278
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhaa6"]
+atlas = ExtResource("1_8iixd")
+region = Rect2(0, 0, 34, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj5eb"]
+atlas = ExtResource("1_8iixd")
+region = Rect2(34, 0, 34, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogfbm"]
+atlas = ExtResource("1_8iixd")
+region = Rect2(68, 0, 34, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kphu3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhaa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj5eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogfbm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Saw" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 2
+mass = 1000.0
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_e5ssh")
+metadata/SpriteType = "Spike"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_syfys")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kphu3")
+frame_progress = 0.980866

@@ -19,8 +19,6 @@ func _ready():
 	$PlayerArea.body_entered.connect(walk_in)
 
 func _physics_process(delta):
-	
-	
 	# Add the gravity.
 	if not is_on_floor() :
 		velocity.y += gravity * delta
@@ -49,17 +47,30 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 	move_and_slide()
 	if not rolling :
-		if velocity.x != 0 or velocity.y != 0 :
+		if not is_on_floor() :
+			$AnimatedSprite2D.play("roll")
+		elif velocity.x != 0 or velocity.y != 0 :
 			$AnimatedSprite2D.play("move")
 		else :
 			$AnimatedSprite2D.play("idle")
+	if position.y  > 100 :
+		lost.emit()
 	
 func get_life_point():
 	return life_point
 
 func walk_in(body):
-	if body.get_meta("SpriteType") == "Enemy" :
+	if body.get_meta("SpriteType") == "Spike" :
 		life_point -= 1
+		jump()
+	if body.get_meta("SpriteType") == "Enemy" :
+		if rolling :
+			body.hit()
+		elif position.y + 32 < body.position.y :
+			body.hit()
+			jump()
+		else :
+			life_point -= 1
 		if life_point < MIN_LIFE_POINT :
 			lost.emit()
 		return

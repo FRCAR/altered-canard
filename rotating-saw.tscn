@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8xxqvdhe0juk"]
+
+[ext_resource type="Script" path="res://rotating-saw.gd" id="1_dxl1u"]
+[ext_resource type="Texture2D" uid="uid://dwqoxgvx2hxxv" path="res://img/saw-with-pole.png" id="1_j4vku"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1a2rp"]
+radius = 18.0278
+
+[node name="RotatingSaw" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 2
+mass = 1000.0
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_dxl1u")
+metadata/SpriteType = "Spike"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-94, -18)
+texture = ExtResource("1_j4vku")
+centered = false
+metadata/SpriteType = "Spike"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-76, 0)
+shape = SubResource("CircleShape2D_1a2rp")

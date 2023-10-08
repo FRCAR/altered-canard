@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://dokw71y621tht"]
+
+[ext_resource type="Script" path="res://level-3-player.gd" id="1_46k0v"]
+[ext_resource type="Texture2D" uid="uid://c0o26euhfuxdi" path="res://img/meat.png" id="2_wxy01"]
+[ext_resource type="Texture2D" uid="uid://24562fbrfm41" path="res://img/angel.png" id="3_go66b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2ec6"]
+size = Vector2(21, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlyh6"]
+size = Vector2(25, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtt62"]
+atlas = ExtResource("3_go66b")
+region = Rect2(0, 0, 34, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtdfv"]
+atlas = ExtResource("3_go66b")
+region = Rect2(34, 0, 34, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye2r2"]
+atlas = ExtResource("3_go66b")
+region = Rect2(68, 0, 34, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usglv"]
+atlas = ExtResource("3_go66b")
+region = Rect2(102, 0, 34, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3u2wh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtt62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtdfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye2r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usglv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Level3Player" type="CharacterBody2D"]
+script = ExtResource("1_46k0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -8)
+scale = Vector2(0.0716724, 0.0855615)
+texture = ExtResource("2_wxy01")
+
+[node name="CollisionShapePlayer" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_y2ec6")
+
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShapeContact" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2(0.5, -8)
+shape = SubResource("RectangleShape2D_qlyh6")
+
+[node name="AngelSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+scale = Vector2(0.639706, 0.639706)
+sprite_frames = SubResource("SpriteFrames_3u2wh")
