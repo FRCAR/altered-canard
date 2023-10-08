@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://baw1tcblcq3ot"]
+
+[ext_resource type="Texture2D" uid="uid://ckxkx75dtpkn7" path="res://img/Wood_Game_Panel_FLAT.png" id="1_g00gq"]
+
+[node name="MessagePanel" type="Label"]
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 209.0
+text = "Vous entrez dans l'antre
+du bosse : 
+No-Future Presse"
+horizontal_alignment = 1
+
+[node name="WoodPanel" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(83, 65)
+texture = ExtResource("1_g00gq")
