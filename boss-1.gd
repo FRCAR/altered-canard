@@ -4,7 +4,7 @@ const SPEED = 0.0
 const JUMP_VELOCITY = -300.0
 var direction = -1
 var score = 10_000_000
-var life_point = 10
+var life_point = 5
 signal killed
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -25,6 +25,9 @@ func _physics_process(delta):
 	# velocity.x = direction * SPEED
 
 	move_and_slide()
+	
+	if position.y < -750 :
+		position.y = -250
 	
 func hit():
 	life_point -= 1

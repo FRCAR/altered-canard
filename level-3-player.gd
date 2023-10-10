@@ -59,6 +59,7 @@ func lose():
 	if not alive :
 		return
 	alive = false
+	$HitSound.play()
 	$Sprite2D.hide()
 	$AngelSprite.show()
 	$AngelSprite.play("default")

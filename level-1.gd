@@ -4,8 +4,6 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var boar_scene: PackedScene
 
-signal player_won
-
 func _process(delta):
 	if $FlameTransform.visible :
 		$FlameTransform.position = $Player/Camera2D.get_screen_center_position()
@@ -13,8 +11,14 @@ func _process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$HUD.set_intro_screen("titre-1")
+	$IntroMusic.play()
+	
+	
+func start_level() :
 	$BoarGenerationTimer.start()
 	$EnemyGenerationTimer.start()
+	$IntroVoice.play()
 
 
 func _on_boar_killed(enemyPosition, score):
@@ -33,7 +37,8 @@ func _on_enemy_generation_timer_timeout():
 	enemy.killed.connect(_on_enemy_killed)
 	add_child(enemy)
 
-func _on_player_transformed():
+func _on_player_transformed(image_number):
+	$FlameTransform.set_random_image(image_number)
 	$FlameTransform.position = $Player/Camera2D.get_screen_center_position()
 	$FlameTransform.start()
 	#get_tree().paused = true
@@ -57,4 +62,8 @@ func _on_boar_generation_timer_timeout():
 func _on_boss_1_killed():
 	$HUD.display_level_end()
 	await get_tree().create_timer(5.0).timeout
-	player_won.emit()
+	get_tree().change_scene_to_file("res://level-2.tscn")
+
+
+func _on_hud_hidden():
+	start_level()

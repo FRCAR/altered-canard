@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://biviorjf1258y"]
+
+[ext_resource type="Texture2D" uid="uid://d31nrsl63lhxw" path="res://img/lapin-tete.png" id="2_42wcq"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="2_p0bhp"]
+[ext_resource type="Texture2D" uid="uid://c833in7ecxaow" path="res://img/lapin-main.png" id="3_7fxjn"]
+[ext_resource type="Texture2D" uid="uid://cllsq8yi1ro75" path="res://img/lapin.png" id="3_kxb4v"]
+[ext_resource type="AudioStream" uid="uid://dhf56xxrdmab0" path="res://sound/punch.ogg" id="5_ugw23"]
+[ext_resource type="AudioStream" uid="uid://dojjwp7c07ppv" path="res://sound/power-up.ogg" id="6_rvmry"]
+[ext_resource type="AudioStream" uid="uid://c5wyuiwn4p6bj" path="res://sound/ouch.ogg" id="7_8d2g6"]
+[ext_resource type="AudioStream" uid="uid://csbdoo00f5es8" path="res://sound/wolf-howl.ogg" id="8_h2suo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_armjh"]
+size = Vector2(25, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fcui"]
+size = Vector2(29, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfcng"]
+size = Vector2(24, 14)
+
+[node name="Level1Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("2_p0bhp")
+metadata/_edit_group_ = true
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(0.5, -6.5)
+scale = Vector2(0.194889, 0.194889)
+texture = ExtResource("2_42wcq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 8.5)
+scale = Vector2(0.260025, 0.260025)
+texture = ExtResource("3_kxb4v")
+
+[node name="CollisionShapePlayer" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_armjh")
+
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShapeContact" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7fcui")
+
+[node name="FistArea" type="Area2D" parent="."]
+position = Vector2(-3, 8)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShapeFist" type="CollisionShape2D" parent="FistArea"]
+position = Vector2(15.5, -2)
+shape = SubResource("RectangleShape2D_lfcng")
+
+[node name="FistSprite" type="Sprite2D" parent="FistArea"]
+position = Vector2(16, -2)
+rotation = -1.5708
+scale = Vector2(0.520401, 0.68648)
+texture = ExtResource("3_7fxjn")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="AttackDuration" type="Timer" parent="."]
+
+[node name="PowerUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_rvmry")
+volume_db = 24.0
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8d2g6")
+volume_db = 24.0
+
+[node name="TransformSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_h2suo")
+
+[node name="PunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ugw23")
+volume_db = -10.947
+
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="AttackDuration" to="." method="_on_attack_duration_timeout"]

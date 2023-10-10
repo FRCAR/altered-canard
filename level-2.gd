@@ -2,12 +2,15 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 
-signal player_won
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$HUD.set_intro_screen("titre-2")
+	
+func start_level():
 	$Enemy1GeneratorTimer.start()
 	$Enemy2GeneratorTimer.start()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,4 +42,8 @@ func _on_level_2_player_lost():
 func _on_boss_2_killed():
 	$HUD.display_level_end()
 	await get_tree().create_timer(5.0).timeout
-	player_won.emit()
+	get_tree().change_scene_to_file("res://level-3.tscn")
+
+
+func _on_hud_hidden():
+	start_level()

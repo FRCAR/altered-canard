@@ -8,7 +8,7 @@ const MIN_LIFE_POINT = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var life_point = 3
+var life_point = 5
 var rolling = false
 var speed = MOVE_SPEED
 
@@ -61,16 +61,20 @@ func get_life_point():
 
 func walk_in(body):
 	if body.get_meta("SpriteType") == "Spike" :
+		$HitSound.play()
 		life_point -= 1
 		jump()
 	if body.get_meta("SpriteType") == "Enemy" :
 		if rolling :
 			body.hit()
-		elif position.y + 32 < body.position.y :
+			$PunchSound.play()
+		elif (position.y + 32 < body.position.y) or not is_on_floor() :
 			body.hit()
+			$PunchSound.play()
 			jump()
 		else :
 			life_point -= 1
+			$HitSound.play()
 		if life_point < MIN_LIFE_POINT :
 			lost.emit()
 		return
@@ -81,8 +85,10 @@ func walk_in(body):
 func attack_on(body):
 	if body.get_meta("SpriteType") == "Enemy" :
 		body.hit()
+		$PunchSound.play()
 		
 func jump():
+	$JumpSound.play()
 	velocity.y = JUMP_VELOCITY
 	
 func start_rolling():

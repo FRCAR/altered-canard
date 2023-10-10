@@ -15,8 +15,6 @@ func _ready():
 	var i = randi_range(1,4)
 	var texture = load("res://img/altered-enemy/" + str(i) + ".png")
 	$Sprite2D.texture = texture
-	scale.x = 1
-	scale.y = 1
 	
 
 func _physics_process(delta):

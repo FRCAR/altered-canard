@@ -78,6 +78,7 @@ func stop_attack():
 func walk_in(body):
 	if body.get_meta("SpriteType") == "Enemy" :
 		life_point -= 1
+		$HitSound.play()
 		if life_point < MIN_LIFE_POINT :
 			lost.emit()
 		return
@@ -85,13 +86,17 @@ func walk_in(body):
 		if power < MAX_POWER :
 			scale *=1.4
 			power += 1
+		if power < MAX_POWER :
+			$PowerUpSound.play()
 		if power == MAX_POWER and not player_transformed :
+			$TransformSound.play()
 			transform()
 		body.consume()
 
 func attack_on(body):
 	if body.get_meta("SpriteType") == "Enemy" :
 		body.hit()
+		$PunchSound.play()
 		
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -114,7 +119,11 @@ func transform():
 	#Afficher la transformation (pause le jeu)
 	# changer sprite du joueur
 	# l'attaque détruit tout l'écran
-	transformed.emit()
+	
+	var random_image = randi_range(1,10)
+	var texture = load("res://img/head/" + str(random_image) + ".png")
+	$Head.texture = texture
+	transformed.emit(random_image)
 	player_transformed = true
 	$FistArea.scale = Vector2(3,3)
 

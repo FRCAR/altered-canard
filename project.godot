@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="altered-Canard"
-run/main_scene="res://main.tscn"
+run/main_scene="res://level-1.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+
+[display]
+
+window/size/resizable=false
 
 [input]
 

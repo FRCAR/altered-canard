@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvg6m81os0uws"]
+[gd_scene load_steps=14 format=3 uid="uid://cvg6m81os0uws"]
 
 [ext_resource type="Script" path="res://level-3.gd" id="1_24iqx"]
 [ext_resource type="PackedScene" uid="uid://dgrvnedhp5d0w" path="res://end-flag.tscn" id="2_tl0lp"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c8xxqvdhe0juk" path="res://rotating-saw.tscn" id="6_kgyet"]
 [ext_resource type="PackedScene" uid="uid://diewnpqv5vn7f" path="res://saw.tscn" id="7_eydu5"]
 [ext_resource type="PackedScene" uid="uid://d0f1jertr7xg6" path="res://spike_block.tscn" id="8_dxtp4"]
+[ext_resource type="PackedScene" uid="uid://baw1tcblcq3ot" path="res://message-panel.tscn" id="9_pir37"]
+[ext_resource type="Texture2D" uid="uid://dsfaycjkstr0b" path="res://img/prestalus.png" id="10_21mg8"]
+[ext_resource type="Texture2D" uid="uid://cbnwnegxnwe5f" path="res://img/head/1.png" id="10_s616e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_plb84"]
 texture = ExtResource("4_yfhs3")
@@ -288,6 +291,21 @@ position = Vector2(335, -2313)
 rotation = 2.11708
 scale = Vector2(5, 5)
 
+[node name="RotatingSaw28" parent="." instance=ExtResource("6_kgyet")]
+position = Vector2(692, -2289)
+rotation = 0.904081
+scale = Vector2(5, 5)
+
+[node name="RotatingSaw29" parent="." instance=ExtResource("6_kgyet")]
+position = Vector2(1005, -2304)
+rotation = 0.0314159
+scale = Vector2(5, 5)
+
+[node name="RotatingSaw30" parent="." instance=ExtResource("6_kgyet")]
+position = Vector2(548, -2516)
+rotation = 0.314159
+scale = Vector2(-5, 5)
+
 [node name="RotatingSaw26" parent="." instance=ExtResource("6_kgyet")]
 position = Vector2(555, -2445)
 rotation = 0.352556
@@ -340,6 +358,39 @@ position = Vector2(804, -2671)
 
 [node name="Saw5" parent="." groups=["saws"] instance=ExtResource("7_eydu5")]
 position = Vector2(877, -629)
+
+[node name="MessagePanel" parent="." instance=ExtResource("9_pir37")]
+offset_left = 106.0
+offset_top = -282.0
+offset_right = 344.0
+offset_bottom = -74.0
+text = "Le méchant Docteur 
+Prestalus a volé tous
+les brouzoufs !
+Monte la tour pour les
+retrouver (ils sont sous
+le drapeau)"
+
+[node name="MessagePanel2" parent="." instance=ExtResource("9_pir37")]
+z_index = -4
+offset_left = 845.0
+offset_top = -1027.0
+offset_right = 1083.0
+offset_bottom = -819.0
+text = "Survivre, c'est déjà
+une victoire"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(1027, -935)
+rotation = -2.66337
+scale = Vector2(1, -1)
+texture = ExtResource("10_s616e")
+
+[node name="Prestalus" type="Sprite2D" parent="."]
+position = Vector2(154, -62)
+scale = Vector2(0.633741, 0.633741)
+texture = ExtResource("10_21mg8")
 
 [connection signal="lost" from="Level3Player" to="." method="_on_level_3_player_lost"]
 [connection signal="reset" from="Level3Player" to="." method="_on_level_3_player_reset"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqcyqkyx0pdkn"]
+
+[ext_resource type="Script" path="res://level-4-player.gd" id="1_iqvao"]
+[ext_resource type="Texture2D" uid="uid://cot8s3nwcbvdq" path="res://img/canard-queue-de-cheval.png" id="2_g0dye"]
+[ext_resource type="AudioStream" uid="uid://c5wyuiwn4p6bj" path="res://sound/ouch.ogg" id="3_cyt32"]
+[ext_resource type="AudioStream" uid="uid://dhf56xxrdmab0" path="res://sound/punch.ogg" id="4_5q8yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2ec6"]
+size = Vector2(23.5, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlyh6"]
+size = Vector2(26.75, 43)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_iqvao")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -21)
+scale = Vector2(0.296348, 0.296348)
+texture = ExtResource("2_g0dye")
+
+[node name="CollisionShapePlayer" type="CollisionShape2D" parent="."]
+position = Vector2(1.25, -21)
+shape = SubResource("RectangleShape2D_y2ec6")
+
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShapeContact" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2(1.625, -20.5)
+shape = SubResource("RectangleShape2D_qlyh6")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cyt32")
+volume_db = 12.0
+
+[node name="PunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5q8yu")
+volume_db = -10.0
